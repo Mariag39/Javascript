@@ -1,0 +1,51 @@
+var enemy = {
+  _graphic: 'image.png',
+  _currentDirection: 'right',
+  _position: { x: 10, y: 10},
+  _score: 40,
+  enemy.moveLeft: function () {
+    this._position.x -= 2;
+    console.log('Going left!'); },
+  enemy.moveRight: function () {
+    this._position.x += 2;
+    console.log('Going right!'); },
+  enemy.advance: function () {
+    this._position.y += 2;
+    console.log('Marching forward!'); },
+  shoot: function () { console.log('PIUM!'); }};
+
+var ship = {
+  _graphic: 'anotherimage.png',
+  _currentDirection: 'left',
+  _position:{x: 30, y: 20},
+  ship.moveLeft: function () {
+    this._position.x -= 2;
+    console.log('Going left!'); },
+  ship.moveRight: function () {
+    this._position.x += 2;
+    console.log('Going right!'); },
+  ship.advance: function () {
+    this._position.y += 2;
+    console.log('go!'); },
+  shoot: function () { console.log('PUM!'); }};
+
+
+function point(x,y){
+var obj = {};
+obj.x = x;
+obj.y = y;
+return obj;
+}
+
+function shot(position, velocity){
+  var obj = {};
+  obj._position = position;
+  obj._velocity = velocity;
+  obj.advance = shot.api.advance;
+  return obj;
+}
+shot.api = {
+  advance: function (){
+    this._position.y += this._velocity;
+  }
+}
